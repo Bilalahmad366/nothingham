@@ -16,7 +16,7 @@ export default function AppLayout({ children }) {
       {/* Header sticky */}
       <Header topOffset="36px" />
 
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 bg-gradient-to-b from-white to-blue-50">{children}</main>
 
       <Footer />
     </div>

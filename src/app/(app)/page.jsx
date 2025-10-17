@@ -1,10 +1,21 @@
-'use client';
+"use client";
+import {
+  WhyUs,
+  AirLines,
+  AirlinesOffer,
+  CountryOffers,
+} from "../../components";
 const Home = () => {
-    return (
-        <div className="p-4 h-[100vh]">
-            <h1 className="text-2xl font-bold mb-4">Home Page </h1>
-        </div>
-    );
+  return (
+    <>
+      <div className="">
+      </div>
+      <AirLines />
+      <WhyUs />
+      <AirlinesOffer />
+      <CountryOffers />
+    </>
+  );
 };
 
 export default Home;
