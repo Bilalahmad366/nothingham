@@ -9,6 +9,7 @@ import {
   TransitionChild,
 } from "@headlessui/react";
 import LazyGlobeLoader from "@/components/common/lazyLoading";
+import { showAlert } from "@/components/common/mixin";
 export default function HotelsDetails() {
   const router = useRouter();
   const [hotels, setHotels] = useState([]);
@@ -38,6 +39,13 @@ export default function HotelsDetails() {
       });
 
       const data = await res.json();
+      if (res.status !== 200) {
+        showAlert(
+          "warning",
+          data?.Status?.Description || "Something went wrong while pre-booking."
+        );
+        return;
+      }
       setLoadingRoomIndex(null);
       sessionStorage.setItem("bookingDetails", JSON.stringify(data));
       router.push("/booking-details");
@@ -455,7 +463,7 @@ export default function HotelsDetails() {
                                   key={i}
                                   className="flex items-center justify-between bg-white/50 dark:bg-blue-950/30 p-2 rounded-md"
                                 >
-                                  <span>Day {i + 1}</span>
+                                  <span>Room {i + 1}</span>
                                   <span>
                                     {day?.[0]?.BasePrice} {hotel.Currency}
                                   </span>
