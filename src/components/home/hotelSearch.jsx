@@ -135,6 +135,7 @@ const HotelSearchForm = () => {
             IsDetailedResponse: true,
           }),
         });
+        console.log("response", response);
         if (!response.ok) throw new Error("Failed to fetch hotels");
 
         const data = await response.json();

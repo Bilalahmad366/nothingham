@@ -75,8 +75,8 @@ export default function HotelsDetails() {
       (hotel.HotelRating || 0) >= filters.starRating;
     const matchesPrice = hotel.Rooms?.some(
       (r) =>
-        r.TotalFare >= filters.priceRange[0] &&
-        r.TotalFare <= filters.priceRange[1]
+        r.FinalPrice >= filters.priceRange[0] &&
+        r.FinalPrice <= filters.priceRange[1]
     );
 
     return hasRefundable && matchesMeal && matchesStar && matchesPrice;
@@ -368,7 +368,7 @@ export default function HotelsDetails() {
                         <div>
                           <div className="flex items-center justify-between">
                             <p className="text-xl font-bold text-blue-700 dark:text-blue-400">
-                              💰 {room.TotalFare} {hotel.Currency}
+                              💰 {room.FinalPrice} {hotel.Currency}
                             </p>
                             <p className="text-xs text-gray-500">
                               + Tax: {room.TotalTax || 0}
@@ -436,14 +436,9 @@ export default function HotelsDetails() {
                                         <span className="font-medium">
                                           Charge:
                                         </span>{" "}
-                                        {policy.CancellationCharge}%
+                                        {policy.CancellationCharge}{" "} {policy.ChargeType}
                                       </p>
-                                      <p>
-                                        <span className="font-medium">
-                                          Type:
-                                        </span>{" "}
-                                        {policy.ChargeType}
-                                      </p>
+                                    
                                     </div>
                                   </li>
                                 ))}

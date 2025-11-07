@@ -125,7 +125,7 @@ export default function BookingDetails() {
                 <div className="flex justify-between font-semibold">
                   <span>Total Fare:</span>
                   <span>
-                    {room.TotalFare} {hotel?.Currency}
+                    {room.FinalPrice} {hotel?.Currency}
                   </span>
                 </div>
                 <div className="flex justify-between text-xs text-gray-500">
