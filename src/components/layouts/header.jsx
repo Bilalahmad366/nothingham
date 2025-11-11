@@ -99,7 +99,7 @@ const Header = ({ stickyOffset = "0px" }) => {
           <Link href="/" className="flex shrink-0 items-center">
             <img
               className="inline w-24 ltr:-ml-1 rtl:-mr-1 mb-1"
-              src="https://nottinghamtravel.co.uk/App_Themes/Theme1/nt15032021/nt150321/images/ManageHome/Logo/logo.png"
+              src="/assets/Notigham-logo.png"
               alt="logo"
             />
           </Link>
@@ -145,7 +145,7 @@ const Header = ({ stickyOffset = "0px" }) => {
             })}
 
             {/* Profile / Login */}
-            {isLoggedIn ? (
+            {/* {isLoggedIn ? (
               <li className="relative">
                 <button
                   onClick={() => setProfileOpen((prev) => !prev)}
@@ -267,7 +267,7 @@ const Header = ({ stickyOffset = "0px" }) => {
                   ></span>
                 </button>
               </li>
-            )}
+            )} */}
           </ul>
         </div>
 
@@ -320,7 +320,7 @@ const Header = ({ stickyOffset = "0px" }) => {
                 </div>
 
                 {/* ✅ Mobile footer: Login/Profile */}
-                <div className="border-t pt-4">
+                {/* <div className="border-t pt-4">
                   {isLoggedIn ? (
                     <>
                       <Link
@@ -361,7 +361,7 @@ const Header = ({ stickyOffset = "0px" }) => {
                       </button>
                     </div>
                   )}
-                </div>
+                </div> */}
               </motion.div>
             </>
           )}

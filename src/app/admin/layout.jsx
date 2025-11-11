@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { LogOut } from "lucide-react";
+import { LogOut, Menu, X } from "lucide-react";
 
 export default function AdminLayout({ children }) {
   const [admin, setAdmin] = useState(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -31,9 +32,8 @@ export default function AdminLayout({ children }) {
   const navigation = [
     { name: "Dashboard", href: "/admin/dashboard" },
     { name: "Markups", href: "/admin/markups" },
-    { name: "Users", href: "/admin/users" },
     { name: "Bookings", href: "/admin/bookings" },
-    { name: "Reports", href: "/admin/reports" },
+    { name: "Tailer made Queries", href: "/admin/tailer-made-queries" },
   ];
 
   const handleLogout = () => {
@@ -45,36 +45,39 @@ export default function AdminLayout({ children }) {
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
       {/* Header/Navbar */}
-      <header className="bg-gray-800 text-white shadow-md">
+      <header className="bg-[#2A7B9B] text-white shadow-md">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Left: Brand + Nav */}
-            <div className="flex items-center space-x-8">
+          <div className="flex items-center justify-between h-20">
+            {/* Left: Brand */}
+            <div className="flex items-center space-x-4">
               <Link href="/admin/dashboard" className="text-xl font-semibold">
-                Admin Panel
+                <img
+                  className="inline h-14 ltr:-ml-1 rtl:-mr-1 mb-1"
+                  src="/assets/Notigham-logo.png"
+                  alt="logo nottingham"
+                />
               </Link>
-
-              <nav className="hidden md:flex space-x-4">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={`px-3 py-2 rounded-md text-sm font-medium ${
-                      pathname === item.href
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-300 hover:bg-white/10 hover:text-white"
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </nav>
             </div>
 
-            {/* Right: Profile + Icons */}
-            <div className="flex items-center space-x-4">
-       
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex space-x-4">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`px-3 py-2 rounded-md text-sm font-medium ${
+                    pathname === item.href
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-300 hover:bg-white/10 hover:text-white"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
 
+            {/* Right: Profile + Logout */}
+            <div className="flex items-center space-x-4">
               {admin && (
                 <div className="hidden sm:flex items-center space-x-2">
                   <img
@@ -85,16 +88,45 @@ export default function AdminLayout({ children }) {
                   <span className="text-sm">{admin?.name || "Admin"}</span>
                 </div>
               )}
-
               <button
                 onClick={handleLogout}
                 className="flex items-center gap-1 bg-lime-600 hover:bg-lime-700 text-white px-3 py-1 rounded-md text-sm"
               >
-                <LogOut size={16} /> 
+                <LogOut size={16} />
+              </button>
+
+              {/* Mobile menu button */}
+              <button
+                className="md:hidden flex items-center ml-2"
+                onClick={() => setMobileOpen((prev) => !prev)}
+              >
+                {mobileOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             </div>
           </div>
         </div>
+
+        {/* Mobile Navigation */}
+        {mobileOpen && (
+          <nav className="md:hidden bg-gray-800 border-t border-gray-700">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={`block px-3 py-2 rounded-md text-base font-medium ${
+                    pathname === item.href
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-300 hover:bg-white/10 hover:text-white"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </nav>
+        )}
       </header>
 
       {/* Page Header (Title Section) */}

@@ -27,6 +27,7 @@ const HotelSearchForm = () => {
   const [openRoomIndex, setOpenRoomIndex] = useState(0);
   const [loading, setLoading] = useState(false);
   const [hotelError, setHotelError] = useState("");
+  const [GuestNationalityError, setGuestNationalityError] = useState("");
   // PaxRooms state
   const [paxRooms, setPaxRooms] = useState([
     { Adults: 1, Children: 0, ChildrenAges: [] },
@@ -53,6 +54,9 @@ const HotelSearchForm = () => {
   const handleBlur = () => {
     if (!hotel || hotel.length === 0) {
       setHotelError("Please select at least one hotel."); // 🔴 show error if empty
+    }
+    if (!guestNationality) {
+      setGuestNationalityError("guest nationality is required");
     }
   };
   // ✅ Fetch country list for both destination and nationality
@@ -96,7 +100,6 @@ const HotelSearchForm = () => {
           body: JSON.stringify({ CountryCode: country.value }),
         });
         if (!response.ok) throw new Error("Failed to fetch cities");
-
         const data = await response.json();
         const options = (data.CityList || []).map((c) => ({
           value: c.Code,
@@ -132,10 +135,9 @@ const HotelSearchForm = () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             CityCode: city.value,
-            IsDetailedResponse: true,
+            IsDetailedResponse: false,
           }),
         });
-        console.log("response", response);
         if (!response.ok) throw new Error("Failed to fetch hotels");
 
         const data = await response.json();
@@ -208,17 +210,22 @@ const HotelSearchForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!hotel.length)
-      return setHotelError("Please select at least one hotel.");
+  if (!hotel.length) {
+    return setHotelError("Please select at least one hotel.");
+  }
+
+  if (!guestNationality?.value) {
+    return setGuestNationalityError("Please select guest nationality.");
+  }
 
     const payload = {
       CheckIn: format(dateRange[0].startDate, "yyyy-MM-dd"),
       CheckOut: format(dateRange[0].endDate, "yyyy-MM-dd"),
       HotelCodes: hotel.map((h) => h.value).join(","),
-      GuestNationality: guestNationality?.value || "AE",
+      GuestNationality: guestNationality?.value,
       PaxRooms: paxRooms,
       ResponseTime: 10.0,
-      IsDetailedResponse: true,
+      IsDetailedResponse: false,
     };
 
     try {
@@ -326,11 +333,20 @@ const HotelSearchForm = () => {
             <Select
               options={countries}
               value={guestNationality}
-              onChange={setGuestNationality}
+              onChange={(selected) => {
+                setGuestNationality(selected);
+                if (selected) setGuestNationalityError(""); 
+              }}
+              onBlur={handleBlur}
               isSearchable
               isLoading={countryLoading}
               placeholder="Select Nationality"
             />
+            {GuestNationalityError && (
+              <p className="text-red-500 text-xs mt-1">
+                {GuestNationalityError}
+              </p>
+            )}
           </div>
           {/* Date Range Picker */}
           <div>

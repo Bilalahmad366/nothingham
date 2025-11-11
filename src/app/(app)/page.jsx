@@ -1,10 +1,3 @@
-import {
-  WhyUs,
-  AirLines,
-  AirlinesOffer,
-  CountryOffers,
-  SearchQueries,
-} from "../../components";
 export const metadata = {
   title: "Hotels in Nottingham | Book Luxury & Budget Stays Online",
   description:
@@ -19,7 +12,7 @@ export const metadata = {
     "Family hotels Nottingham",
     "Nottingham city centre hotels",
     "Best hotels near Nottingham University",
-    "Online hotel booking Nottingham"
+    "Online hotel booking Nottingham",
   ],
   openGraph: {
     title: "Best Hotels in Nottingham | Book Online and Save",
@@ -42,7 +35,13 @@ export const metadata = {
     canonical: "https://yourdomain.com/nottingham",
   },
 };
-
+import {
+  WhyUs,
+  AirLines,
+  AirlinesOffer,
+  CountryOffers,
+  SearchQueries,
+} from "../../components";
 const Home = () => {
   return (
     <>
