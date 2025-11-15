@@ -134,7 +134,7 @@ export default function RoomsDetails() {
                           key={dayIndex}
                           className="flex justify-between bg-white/60 dark:bg-blue-950/30 p-2 rounded-md"
                         >
-                          <span>Day {dayIndex + 1}</span>
+                          <span>Night {dayIndex + 1}</span>
                           <span>
                             {dayRate?.BasePrice} {hotel?.Currency}
                           </span>

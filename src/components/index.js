@@ -6,14 +6,15 @@ import SearchQueries from "./home/searchQuery";
 import SpecialOffer from "./SpecialOffer";
 import TailorMade from "./tailorMadeQuery";
 import OfferDetails from "./offerDetail";
+import ReligiousTones from "./religiousTone";
 import LoginPage from "./auth/login/page";
 import RegisterPage from "./auth/register/page";
 import HotelDetails from "./hotelbookingDetails/hotelsDetails";
 import RoomDetails from "./hotelbookingDetails/roomsDetails";
 import HotelBooking from "./payments/hotelBooking";
-
 export {
   WhyUs,
+  ReligiousTones,
   AirLines,
   AirlinesOffer,
   CountryOffers,

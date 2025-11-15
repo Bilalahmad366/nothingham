@@ -156,15 +156,15 @@ function BookingForm() {
             const tboResult = await tboRes.json();
             console.log('TBO Result:', tboResult);
             if (tboRes.ok) {
-              showAlert('success', 'TBO booking completed successfully!');
+              showAlert('success', ' booking completed successfully!');
               console.log('TBO Response:', tboResult);
             } else {
-              showAlert('error', `TBO booking failed: ${tboResult.error}`);
+              showAlert('error', ` booking failed: ${tboResult.error}`);
               console.error('TBO Error:', tboResult);
             }
           } catch (err) {
             showAlert('error', 'Error while calling TBO API.');
-            console.error('TBO API Error:', err);
+            console.error(' API Error:', err);
           }
         }
       }

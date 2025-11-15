@@ -1,14 +1,15 @@
 "use client";
 import { useState } from "react";
+import { FaPlane, FaHotel, FaSuitcase, FaClipboardList } from "react-icons/fa";
+import TabPills from "../common/tabPill";
 import {
   HotelSearch,
   FlightSearch,
   HotelFlightSearch,
   PackagesSearch,
 } from "./index";
-import { FaHotel, FaPlane, FaSuitcase, FaClipboardList } from "react-icons/fa";
 
-const SearchQueries = () => {
+export default function SearchQueries() {
   const [activeTab, setActiveTab] = useState("flights");
 
   const tabs = [
@@ -34,7 +35,7 @@ const SearchQueries = () => {
     },
   ];
 
-  const renderTabComponent = () => {
+  const renderTabContent = () => {
     switch (activeTab) {
       case "flights":
         return <FlightSearch />;
@@ -50,29 +51,25 @@ const SearchQueries = () => {
   };
 
   return (
-    <section className="px-2 lg:px-6 py-16">
-      {/* Tabs with Icons */}
-      <div className="flex justify-center gap-4 mb-6 flex-wrap">
-        {tabs.map((tab) => (
-          <button
-            key={tab.key}
-            onClick={() => setActiveTab(tab.key)}
-            className={`px-6 py-2 rounded-full font-semibold flex items-center transition-all duration-300
-              ${
-                activeTab === tab.key
-                  ? "bg-blue-600 text-white shadow-lg"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-          >
-            {tab.icon} {tab.label}
-          </button>
-        ))}
-      </div>
-
-      {/* Tab Content */}
-      <div className="mt-6 min-h-[200px]">{renderTabComponent()}</div>
+    <section className="px-4 py-16">
+      <TabPills
+        logo="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_1280.jpg"
+        logoAlt="Company Logo"
+        tabs={tabs.map((tab) => ({
+          ...tab,
+          label: (
+            <span className="flex items-center">
+              {tab.icon} {tab.label}
+            </span>
+          ),
+        }))}
+        activeKey={activeTab}
+        onTabChange={setActiveTab}
+        baseColor="#658A65"
+        pillColor="#fff"
+        hoveredTextColor="#fff"
+      />
+      <div className="mt-6 min-h-[200px]">{renderTabContent()}</div>
     </section>
   );
-};
-
-export default SearchQueries;
+}
