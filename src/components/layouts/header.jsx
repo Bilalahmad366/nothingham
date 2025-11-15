@@ -36,7 +36,7 @@ const Header = ({ stickyOffset = "0px" }) => {
   const navLinks = [
     { href: "/", label: "Home", icon: <FaHome /> },
     { href: "/special-offers", label: "Special Offers", icon: <FaTag /> },
-    { href: "/hajj-umrah", label: "Hajj & Umrah", icon: <FaPlane /> },
+    { href: "/religious-tone", label: "Religious Tone", icon: <FaPlane /> },
     {
       href: "/tailor-made-query",
       label: "Tailor Made Query",

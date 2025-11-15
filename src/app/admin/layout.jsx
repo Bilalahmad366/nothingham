@@ -34,6 +34,7 @@ export default function AdminLayout({ children }) {
     { name: "Markups", href: "/admin/markups" },
     { name: "Bookings", href: "/admin/bookings" },
     { name: "Tailer made Queries", href: "/admin/tailer-made-queries" },
+    { name: "Manage Offers", href: "/admin/offers" },
   ];
 
   const handleLogout = () => {

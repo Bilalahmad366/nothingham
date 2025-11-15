@@ -36,10 +36,10 @@ export const metadata = {
   },
 };
 
-import { SpecialOffer } from "@/components";
+import { OfferDetails } from "@/components";
 
-const SpecialOffers = () => {
-  return <SpecialOffer />;
+const OfferDetail = () => {
+  return <OfferDetails />;
 };
 
-export default SpecialOffers;
+export default OfferDetail;
