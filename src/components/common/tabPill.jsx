@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import Link from "next/link";
 
 const TabPills = ({
   logo,
@@ -14,7 +13,6 @@ const TabPills = ({
   hoveredTextColor = "#060010",
   pillTextColor,
 }) => {
-  const resolvedTextColor = pillTextColor ?? baseColor;
   const circleRefs = useRef([]);
   const tlRefs = useRef([]);
   const activeTweenRefs = useRef([]);

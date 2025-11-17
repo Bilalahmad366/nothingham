@@ -5,6 +5,7 @@
 :root {
   font-family: var(--font-poppins), sans-serif;
   --radius: 0.625rem;
+    --main-gradient: linear-gradient(5deg, rgba(137,193,64,1) 0%, rgba(73,186,233,1) 78%);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -261,18 +262,21 @@
   }
 }
 
-
 @keyframes fadeIn {
-  0% { 
-    opacity: 0; 
-    transform: translateY(10px); 
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  100% { 
-    opacity: 1; 
-    transform: translateY(0); 
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 .animate-fadeIn {
   animation: fadeIn 0.6s ease-out both;
+}
+
+.bg-main-gradient {
+  background: var(--main-gradient);
 }

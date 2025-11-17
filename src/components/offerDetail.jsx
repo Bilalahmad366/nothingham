@@ -193,53 +193,6 @@ const OfferDetail = () => {
     return Object.keys(stepErrors).length === 0;
   };
 
-  const handleBookingSubmit = async () => {
-    setIsPaying(true);
-
-    // 1️⃣ Create booking & get clientSecret
-    const bookingData = {
-      contact,
-      guests,
-      offerId: selectedOffer._id,
-      amount: selectedOffer.amount,
-      currency: selectedOffer.currency || "usd",
-      totalAmount,
-      fareType: selectedOffer.fareType,
-    };
-
-    const res = await fetch("/api/offers/book-offer", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(bookingData),
-    });
-
-    const data = await res.json();
-
-    if (!data.clientSecret) {
-      console.error("No client secret returned");
-      setIsPaying(false);
-      return;
-    }
-
-    // 2️⃣ Confirm card payment
-    const cardElement = elements.getElement(CardElement);
-    const result = await stripe.confirmCardPayment(data.clientSecret, {
-      payment_method: {
-        card: cardElement,
-        billing_details: { email: contact.email },
-      },
-    });
-
-    if (result.error) {
-      console.error(result.error.message);
-      alert("Payment failed: " + result.error.message);
-      setIsPaying(false);
-    } else {
-      alert("Payment successful!");
-      setShowModal(false);
-    }
-  };
-
   const bookNow = (offer) => {
     setSelectedOffer(offer);
     setShowModal(true);

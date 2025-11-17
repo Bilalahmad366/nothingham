@@ -11,9 +11,11 @@ import LoginPage from "./auth/login/page";
 import RegisterPage from "./auth/register/page";
 import HotelDetails from "./hotelbookingDetails/hotelsDetails";
 import RoomDetails from "./hotelbookingDetails/roomsDetails";
+import PackageDetails from "./packageDetails";
 import HotelBooking from "./payments/hotelBooking";
 export {
   WhyUs,
+  PackageDetails,
   ReligiousTones,
   AirLines,
   AirlinesOffer,

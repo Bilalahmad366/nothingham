@@ -53,7 +53,7 @@ export default function SearchQueries() {
   return (
     <section className="px-4 py-16">
       <TabPills
-        logo="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832_1280.jpg"
+        logo="/assets/globe.png"
         logoAlt="Company Logo"
         tabs={tabs.map((tab) => ({
           ...tab,
@@ -65,7 +65,7 @@ export default function SearchQueries() {
         }))}
         activeKey={activeTab}
         onTabChange={setActiveTab}
-        baseColor="#658A65"
+        baseColor="#49BAE9"
         pillColor="#fff"
         hoveredTextColor="#fff"
       />

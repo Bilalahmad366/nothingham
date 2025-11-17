@@ -210,13 +210,13 @@ const HotelSearchForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-  if (!hotel.length) {
-    return setHotelError("Please select at least one hotel.");
-  }
+    if (!hotel.length) {
+      return setHotelError("Please select at least one hotel.");
+    }
 
-  if (!guestNationality?.value) {
-    return setGuestNationalityError("Please select guest nationality.");
-  }
+    if (!guestNationality?.value) {
+      return setGuestNationalityError("Please select guest nationality.");
+    }
 
     const payload = {
       CheckIn: format(dateRange[0].startDate, "yyyy-MM-dd"),
@@ -239,7 +239,7 @@ const HotelSearchForm = () => {
       const data = await res.json();
 
       if (!res.ok) {
-        showAlert("error", data.message || "Failed to fetch hotels");
+        showAlert("warning", data.message || "Failed to fetch hotels");
         setLoading(false);
         return;
       }
@@ -335,7 +335,7 @@ const HotelSearchForm = () => {
               value={guestNationality}
               onChange={(selected) => {
                 setGuestNationality(selected);
-                if (selected) setGuestNationalityError(""); 
+                if (selected) setGuestNationalityError("");
               }}
               onBlur={handleBlur}
               isSearchable
@@ -558,7 +558,7 @@ const HotelSearchForm = () => {
         <button
           type="submit"
           disabled={loading}
-          className={`flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold w-full md:w-auto mt-4 ${
+          className={`flex items-center justify-center gap-2 bg-[#49BAE9] hover:bg-[#23afec] text-white px-6 py-3 rounded-lg font-semibold w-full md:w-auto mt-4 ${
             loading ? "opacity-70 cursor-not-allowed" : ""
           }`}
         >
