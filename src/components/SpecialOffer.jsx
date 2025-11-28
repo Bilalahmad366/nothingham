@@ -164,37 +164,42 @@ export default function SpecialOffers() {
   const [filtersApplied, setFiltersApplied] = useState(false);
   const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
 
-  useEffect(() => {
-    const fetchOffers = async () => {
-      setIsLoading(true);
-      try {
-        const res = await fetch("/api/offers");
-        const data = await res.json();
+useEffect(() => {
+  const fetchOffers = async () => {
+    setIsLoading(true);
+    try {
+      const res = await fetch("/api/offers");
+      const data = await res.json();
+      const activeOffers = (data.offers || data || []).filter(
+        (offer) => offer.active === true
+      );
+      const parsedOffers = activeOffers.map((offer) => {
+        let categories = offer.category || [];
 
-        const parsedOffers = (data.offers || data || []).map((offer) => {
-          let categories = offer.category || [];
-          if (categories.length === 1 && typeof categories[0] === "string") {
-            try {
-              const parsed = JSON.parse(categories[0]);
-              if (Array.isArray(parsed)) categories = parsed;
-            } catch (err) {
-              categories = [];
-            }
+        if (categories.length === 1 && typeof categories[0] === "string") {
+          try {
+            const parsed = JSON.parse(categories[0]);
+            if (Array.isArray(parsed)) categories = parsed;
+          } catch (err) {
+            categories = [];
           }
-          return { ...offer, category: categories };
-        });
+        }
 
-        setAllOffers(parsedOffers);
-        setFilteredOffers(parsedOffers);
-      } catch (err) {
-        console.error("Error fetching offers:", err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+        return { ...offer, category: categories };
+      });
 
-    fetchOffers();
-  }, []);
+      setAllOffers(parsedOffers);
+      setFilteredOffers(parsedOffers);
+    } catch (err) {
+      console.error("Error fetching offers:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  fetchOffers();
+}, []);
+
 
   const onSubmit = (filters) => {
     const hasFilter =

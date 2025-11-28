@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { FaFilter, FaTimes, FaMapMarkerAlt } from "react-icons/fa";
 import { CalendarDays, Globe2, Bookmark } from "lucide-react";
 import { showAlert } from "@/components/common/mixin";
@@ -229,7 +228,6 @@ export default function PackagesDetails() {
     priceRange: [0, 5000],
   });
   const [expandedDesc, setExpandedDesc] = useState({});
-  const router = useRouter();
 
   useEffect(() => {
     const saved = sessionStorage.getItem("packages");
@@ -354,7 +352,7 @@ export default function PackagesDetails() {
               >
                 <option>All</option>
                 <option>Per Person</option>
-                <option>Per Group</option>
+                <option>Total</option>
               </select>
             </div>
 
@@ -416,7 +414,7 @@ export default function PackagesDetails() {
                         <img
                           src={pkg.images[0]}
                           alt={pkg.title}
-                           className="w-full w md:h-[340px]  object-cover rounded-2xl"
+                          className="w-full w md:h-[340px]  object-cover rounded-2xl"
                         />
                       ) : (
                         <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500 text-sm">

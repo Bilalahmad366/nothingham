@@ -26,6 +26,7 @@ export async function POST(req) {
 
     // Case-insensitive query for type and destination
     const offers = await Offer.find({
+      active: true,
       type: { $regex: new RegExp(`^${type}$`, "i") },
       destination: { $regex: new RegExp(`^${destination}$`, "i") },
       dateFrom: {

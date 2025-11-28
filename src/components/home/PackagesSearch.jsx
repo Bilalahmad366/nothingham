@@ -164,7 +164,7 @@ const OffersSearchForm = () => {
         <button
           type="submit"
           disabled={loading}
-          className={`flex items-center justify-center gap-2 bg-[#49BAE9] hover:bg-[#23afec] text-white px-6 py-3 rounded-lg font-semibold w-full md:w-auto mt-4 ${
+          className={`flex items-center justify-center gap-2  bg-[#23AFEC] hover:bg-[#0fa8ea] text-white px-6 py-3 rounded-lg font-semibold w-full md:w-auto mt-4 ${
             loading ? "opacity-70 cursor-not-allowed" : ""
           }`}
         >

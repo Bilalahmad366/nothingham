@@ -141,8 +141,11 @@ export default function ReligiousTone() {
       try {
         const res = await fetch("/api/offers");
         const data = await res.json();
+        const activeOffers = (data.offers || data || []).filter(
+          (offer) => offer.active === true
+        );
 
-        const parsedOffers = (data.offers || data || []).map((offer) => {
+        const parsedOffers = activeOffers.map((offer) => {
           let categories = offer.category || [];
           if (categories.length === 1 && typeof categories[0] === "string") {
             try {
